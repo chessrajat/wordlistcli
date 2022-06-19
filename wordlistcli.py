@@ -1,5 +1,4 @@
 import argparse
-from ast import Global 
 import gzip
 import tarfile
 import time
@@ -19,7 +18,7 @@ except Exception as ex:
 
 
 __Author__: str = "Drag0"
-__version__: str = "v0.0.1"
+__version__: str = "v0.1.0"
 __project__: str = "wordlistcli"
 __description__: str = "Search and Download wordlists from online archives"
 
@@ -166,8 +165,7 @@ def search_wordlist(args):
         error(str(ex))
 
 
-
-if __name__=="__main__":
+def main():
     banner()
     load_repo()
 
@@ -201,4 +199,8 @@ if __name__=="__main__":
         parser.print_help()
         sys.exit(-1)
     
+
+
+if __name__=="__main__":
+    main()
     
