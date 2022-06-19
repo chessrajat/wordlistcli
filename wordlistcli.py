@@ -125,7 +125,6 @@ def download_wordlist(args):
             file_url = REPOSITORY[file_name]["url"]
             file_name = file_url.split("/")[-1]
             file_destination = os.path.join(os.path.abspath(destination), file_name)
-            print(file_destination)
             download_file(file_url, file_destination, decompress)
         else:
             error(f"{file_name} not found, Please spell check or search for keyword again.")
