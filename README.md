@@ -1,9 +1,9 @@
 # Description
----
+
 Command line utility to search and download wordlists from online websites
 
 # Installation
----
+
 ## Option 1 --Git
 ```
 git clone https://github.com/chessrajat/wordlistcli
@@ -16,7 +16,7 @@ pip install wordlistcli
 ```
 
 # Usage
----
+
 ```
 usage: wordlistcli [-h] [-v] {get,search} ...
 
@@ -94,7 +94,7 @@ Downloading... : 52043it [00:05, 9490.31it/s]
 ```
 
 ## Contribute
----
+
 Include more Latest or custom made wordlists
 
 **Issues** : https://github.com/chessrajat/wordlistcli/issues

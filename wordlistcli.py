@@ -18,7 +18,7 @@ except Exception as ex:
 
 
 __Author__: str = "Drag0"
-__version__: str = "v0.1.0"
+__version__: str = "v0.1.1"
 __project__: str = "wordlistcli"
 __description__: str = "Search and Download wordlists from online archives"
 

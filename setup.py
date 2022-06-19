@@ -6,7 +6,7 @@ with open("README.md", "r") as readme:
 setup(
     name="wordlistcli",
     author="Drag0",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/chessrajat/wordlistcli",
     description="A command line tool to search and download pre-made wordlist from online archives",
     long_description=long_description,
