@@ -1,6 +1,5 @@
 import argparse
-from ast import Global
-from fileinput import filename
+from ast import Global 
 import gzip
 import tarfile
 import time
@@ -8,8 +7,6 @@ import json
 import os
 import sys
 from shutil import copyfileobj
-from concurrent.futures import ThreadPoolExecutor
-from unittest import loader
 from tqdm import tqdm
 
 
@@ -59,18 +56,21 @@ def load_repo():
         error(f"Error while loading repository: {str(ex)}")
         exit(-1)
 
+
 def decompress_file(infilename: str) -> None:
     filename: str = os.path.basename(infilename).lower()
     try:
         info(f"decompressing {infilename}")
         if filename.endswith(".tar.gz"):
-            tar: tarfile.TarFile = tarfile.open(infilename)
-            tar.extractall(os.path.dirname(infilename))
+            with tarfile.open(infilename) as f:
+                tar: tarfile.TarFile = f
+                tar.extractall(os.path.dirname(infilename))
         elif filename.endswith(".gz"):
             gf: gzip.GzipFile = gzip.GzipFile(infilename)
             outfile = open(infilename.split(".gz")[0], "wb")
             copyfileobj(gf, outfile)
             outfile.close()
+            gf.close()
         else:
             warning(f"decompressing {infilename.split('.')[-1]} file type not supported")
             return
@@ -78,6 +78,7 @@ def decompress_file(infilename: str) -> None:
         os.remove(infilename)
     except Exception as ex:
         error(f"Unable to decompress {infilename}: {ex}")
+    
 
 def download_file(file_url, destination, is_decompress):
     headers = {"User-Agent": f"{__Author__}  {__version__}"}
@@ -112,7 +113,7 @@ def download_file(file_url, destination, is_decompress):
     except KeyboardInterrupt:
         return
     except Exception as ex:
-        error(f"Error while downloading {filename}: {ex}")
+        error(f"Error while downloading {destination}: {ex}")
 
 
 def download_wordlist(args):
