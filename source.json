@@ -25089,6 +25089,11 @@
     "size": "53.29 Mb",
     "group": "passwords"
   },
+  "Indian_passwords_common": {
+    "url": "https://raw.githubusercontent.com/darkrider88/Indian-Wordlist/main/indian_list_1.txt",
+    "size": "47 Kb",
+    "group": "passwords"
+  },
   "singles": {
     "url": "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Leaked-Databases/singles.org.txt",
     "size": "94.69 Kb",

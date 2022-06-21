@@ -142,7 +142,7 @@ def search_wordlist(args):
             info("searching in group...")
             for wordlist in REPOSITORY:
                 group = REPOSITORY[wordlist]["group"]
-                if group.__contains__(search_term):
+                if group.lower().__contains__(search_term.lower()):
                     size = REPOSITORY[wordlist]["size"]
                     print(f"    {count} > {wordlist} ({size})")
                     count += 1
@@ -152,7 +152,7 @@ def search_wordlist(args):
             return
 
         for wordlist in REPOSITORY:
-            if wordlist.__contains__(search_term):
+            if wordlist.lower().__contains__(search_term.lower()):
                 size = REPOSITORY[wordlist]["size"]
                 print(f"    {count} > {wordlist} ({size})")
                 count += 1
