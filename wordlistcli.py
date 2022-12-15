@@ -63,7 +63,26 @@ def decompress_file(infilename: str) -> None:
         if filename.endswith(".tar.gz"):
             with tarfile.open(infilename) as f:
                 tar: tarfile.TarFile = f
-                tar.extractall(os.path.dirname(infilename))
+                def is_within_directory(directory, target):
+                    
+                    abs_directory = os.path.abspath(directory)
+                    abs_target = os.path.abspath(target)
+                
+                    prefix = os.path.commonprefix([abs_directory, abs_target])
+                    
+                    return prefix == abs_directory
+                
+                def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+                
+                    for member in tar.getmembers():
+                        member_path = os.path.join(path, member.name)
+                        if not is_within_directory(path, member_path):
+                            raise Exception("Attempted Path Traversal in Tar File")
+                
+                    tar.extractall(path, members, numeric_owner=numeric_owner) 
+                    
+                
+                safe_extract(tar, os.path.dirname(infilename))
         elif filename.endswith(".gz"):
             gf: gzip.GzipFile = gzip.GzipFile(infilename)
             outfile = open(infilename.split(".gz")[0], "wb")
